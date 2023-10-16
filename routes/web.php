@@ -15,11 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('cms/tailor');
 });
 
 Route::get('example' , [ExampleController::class , 'getAllData']);
 
-Route::get('/dashboard', function () {
-    return view('cms/dashboard');
-});

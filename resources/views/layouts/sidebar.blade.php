@@ -22,32 +22,13 @@
         </li>
 
         <li class="nav-item">
-          <a href="/surat-masuk" id="suratMasuk" class="nav-link">
+          <a href="/" id="suratMasuk" class="nav-link">
             <i class="nav-icon fa-solid fa-file-arrow-down"></i>
-            <p>Surat Masuk</p>
+            <p>Tailor</p>
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="/surat-keluar" id="suratKeluar" class="nav-link">
-            <i class="nav-icon fa-solid fa-file-arrow-up"></i>
-            <p>Surat Keluar</p>
-          </a>
-        </li>
 
-        <li class="nav-item">
-          <a href="/arsip-surat-masuk" id="arsipSuratMasuk" class="nav-link">
-            <i class="nav-icon fa-solid fa-box-archive"></i>
-            <p>Arsip Surat Masuk</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a href="/arsip-surat-keluar" id="arsipSuratKeluar" class="nav-link">
-            <i class="nav-icon fa-solid fa-box-archive"></i>
-            <p>Arsip Surat Keluar</p>
-          </a>
-        </li>
 
         {{-- @if (auth()->user()->role=='admin')
           <li class="nav-item">
