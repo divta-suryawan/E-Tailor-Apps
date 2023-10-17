@@ -9,4 +9,5 @@ interface TailorInterfaces {
     public function createData(TailorRequest $request);
     public function getDataById($id);
     public function updateData(TailorRequest $request, $id);
+    public function deleteData($id);
 }
