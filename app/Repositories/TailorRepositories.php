@@ -6,6 +6,7 @@ use App\Http\Requests\TailorRequest;
 use App\Interfaces\TailorInterfaces;
 use App\Models\TailorModel;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,6 @@ class TailorRepositories implements TailorInterfaces
     {
         $this->tailorModel = $tailorModel;
     }
-
 
     public function getAllData()
     {
@@ -92,5 +92,21 @@ class TailorRepositories implements TailorInterfaces
         }
 
         return $this->success($data);
+    }
+
+    public function deleteData($id)
+    {
+        $data = $this->tailorModel::where('id' , $id)->first();
+        if (!$data) {
+            return $this->idOrDataNotFound();
+        }else{
+            $location = 'uploads/tailor/' . $data->tailor_img;
+            $data->delete();
+            if (File::exists($location)) {
+                File::delete($location);
+            }
+        }
+
+        return $this->delete();
     }
 }
