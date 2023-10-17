@@ -11,7 +11,7 @@ class TailorModel extends Model
     use HasFactory , HasUuids;
     protected $table = 'tb_tailor';
     protected $fillable = [
-        'id', 'tailor_name', 'address', 'phone', 'email', 'tailor_img', 'id_user', 'created_at', 'updated_at'
+        'id', 'tailor_name', 'address', 'phone', 'email', 'tailor_img', 'description', 'id_user', 'created_at', 'updated_at'
     ];
 
 
