@@ -29,6 +29,7 @@ class TailorRequest extends FormRequest
             $rules['address'] = 'required';
             $rules['phone'] = 'required';
             $rules['tailor_img'] = 'mimes:png,jpg,jpeg';
+            $rules['description'] = 'required';
            
         } else {
             $rules['tailor_name'] = 'required';
@@ -36,6 +37,7 @@ class TailorRequest extends FormRequest
             $rules['address'] = 'required';
             $rules['phone'] = 'required';
             $rules['tailor_img'] = 'required|mimes:png,jpg,jpeg';
+            $rules['description'] = 'required';
         }
     
         return $rules;
@@ -53,7 +55,8 @@ class TailorRequest extends FormRequest
             'email.unique' => 'Email sudah ada sebelumnya',
             'email.email' => 'format harus email',
             'tailor_img.required' => 'Gambar toko wajib diisi !',
-            'tailor.mimes' => 'Format harus png,jpg,jpeg'
+            'tailor.mimes' => 'Format harus png,jpg,jpeg',
+            'description.required' => 'Deskripsi tidak boleh kosong !   '
         ];
     }
 
