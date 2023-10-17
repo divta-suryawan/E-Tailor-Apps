@@ -34,10 +34,10 @@ class TailorRepositories implements TailorInterfaces
     {
         try {
             $data = new $this->tailorModel;
-            $data->tailor_name = $request->input('tailor_name');
-            $data->address = $request->input('address');
-            $data->phone = $request->input('phone');
-            $data->email = $request->input('email');
+            $data->tailor_name = htmlspecialchars($request->input('tailor_name'));
+            $data->address = htmlspecialchars($request->input('address'));
+            $data->phone = htmlspecialchars($request->input('phone'));
+            $data->email = htmlspecialchars($request->input('email'));
             if ($request->hasFile('tailor_img')) {
                 $file = $request->file('tailor_img');
                 $extention = $file->getClientOriginalExtension();
@@ -46,6 +46,7 @@ class TailorRepositories implements TailorInterfaces
                 $file->move(public_path('uploads/tailor'), $filename);
                 $data->tailor_img = $filename;
             }
+            $data->description = $request->input('description');
             $data->save();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
@@ -67,11 +68,11 @@ class TailorRepositories implements TailorInterfaces
     public function updateData(TailorRequest $request, $id)
     {
         try {
-            $data = $this->tailorModel::where('id' , $id)->first();
-            $data->tailor_name = $request->input('tailor_name');
-            $data->address = $request->input('address');
-            $data->phone = $request->input('phone');
-            $data->email = $request->input('email');
+            $data = $this->tailorModel::where('id', $id)->first();
+            $data->tailor_name = htmlspecialchars($request->input('tailor_name'));
+            $data->address = htmlspecialchars($request->input('address'));
+            $data->phone = htmlspecialchars($request->input('phone'));
+            $data->email = htmlspecialchars($request->input('email'));
             if ($request->hasFile('tailor_img')) {
                 $file = $request->file('tailor_img');
                 $extention = $file->getClientOriginalExtension();
@@ -84,6 +85,7 @@ class TailorRepositories implements TailorInterfaces
                 }
                 $data->tailor_img = $filename;
             }
+            $data->description = $request->input('description');
             $data->save();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
