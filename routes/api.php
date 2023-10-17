@@ -24,4 +24,5 @@ Route::prefix('v1/tailor')->controller(TailorController::class)->group(function(
     Route::post('/create' , 'createData');
     Route::get('/get/{id}' , 'getDataById');
     Route::post('/update/{id}' , 'updateData');
+    Route::delete('/delete/{id}' , 'deleteData');
 });
