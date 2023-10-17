@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('tailor_img');
-            $table->foreignUuid('id_user')->constrained('users');
+            $table->string('description');
+            $table->foreignUuid('id_user')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
