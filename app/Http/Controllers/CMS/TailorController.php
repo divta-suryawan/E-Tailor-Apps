@@ -35,4 +35,9 @@ class TailorController extends Controller
     {
         return $this->tailorRepostories->updateData($request , $id);
     }
+
+    public function deleteData($id)
+    {
+        return $this->tailorRepostories->deleteData($id);
+    }
 }
