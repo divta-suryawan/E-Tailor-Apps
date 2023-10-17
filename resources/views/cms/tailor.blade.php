@@ -293,6 +293,7 @@
                                 showConfirmButton: true
                             });
                         } else {
+                            resetModal()
                             console.log(data);
                             $('#loading-overlay').hide();
                             Swal.fire({
@@ -349,6 +350,27 @@
                         alert("error");
                     }
                 });
+            });
+
+            function resetModal() {
+                $('#id').val('');
+                $('#tailor_name').val('');
+                $('#email').val('');
+                $('#address').val('');
+                $('#phone').val('');
+                $('#tailor_img').val('');
+                $('#summernote').summernote('code', ''); 
+                $('#preview').attr('src', '').hide();
+                $('#tailor-label').text('Upload gambar');
+            }
+
+            $('#TailorModal').on('hidden.bs.modal', function() {
+                if (isEditMode) {
+                    resetModal();
+                }
+                isEditMode = false;
+                $('.modal-title').text('Tambah Data');
+                $('.modal-footer button[type="submit"]').text('Submit');
             });
 
             $(document).on('click', '.delete-confirm', function(e) {
