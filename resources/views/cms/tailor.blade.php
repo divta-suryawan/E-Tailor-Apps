@@ -350,6 +350,61 @@
                     }
                 });
             });
+
+            $(document).on('click', '.delete-confirm', function(e) {
+                e.preventDefault();
+                let id = $(this).data('id');
+                Swal.fire({
+                    title: 'Hapus ?',
+                    text: 'Anda tidak dapat mengembalikan  ini',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Delete',
+                    cancelButtonText: 'Cancel',
+                    resolveButton: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "{{ url('api/v1/tailor/delete') }}/" + id,
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "id": id
+                            },
+                            success: function(response) {
+                                if (response.message === 'Failed') {
+                                    Swal.fire({
+                                        title: 'Gagal menghapus data',
+                                        text: response.message,
+                                        icon: 'error',
+                                        timer: 5000,
+                                        showConfirmButton: true
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: 'Data berhasil dihapus',
+                                        icon: 'success',
+                                        timer: 5000,
+                                        showConfirmButton: true
+                                    }).then(function() {
+                                        window.location.reload();
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire({
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan',
+                                    icon: 'error',
+                                    timer: 5000,
+                                    showConfirmButton: true
+                                });
+                            }
+                        });
+                    }
+                })
+            });
         });
     </script>
 @endsection
