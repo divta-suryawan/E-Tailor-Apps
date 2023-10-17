@@ -28,6 +28,7 @@
                                 <th>Alamat</th>
                                 <th>No hp</th>
                                 <th>Gambar</th>
+                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -104,7 +105,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Deskripsi</label>
-                                    <input type="hidden" name="description" id="description">
+                                    <textarea class="form-control" name="description" id="description" style="display: none;"></textarea>
                                     <div id="summernote"></div>
                                 </div>
                             </div>
@@ -141,7 +142,6 @@
         $(document).ready(function() {
 
             $('#summernote').summernote({
-                placeholder: 'Hello stand alone ui',
                 tabsize: 2,
                 height: 120,
                 toolbar: [
@@ -151,7 +151,14 @@
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['insert', ['link']],
                     ['view', ['fullscreen', 'codeview', 'help']]
-                ]
+                ],
+                callbacks: {
+                    onInit: function() {
+                        var code = $(this).summernote('code');
+                        $(this).summernote('code', code.replace(/<p>/gi, '').replace(/<\/p>/gi, '')
+                            .replace(/<br>/gi, ''));
+                    }
+                }
             });
 
             var dataTable = $("#dataTable").DataTable({
@@ -178,6 +185,7 @@
                             item
                             .tailor_img +
                             "'><i class='far fa-eye d-flex text-lg justify-content-center'></i></a></td>";
+                        tableBody += "<td>" + item.description + "</td>";
                         tableBody += "<td>" +
                             "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                             "data-id='" + item.id + "'>" +
@@ -258,12 +266,12 @@
 
             $('#formTambah').submit(function(e) {
                 e.preventDefault();
-
-                // let description = $('#summernote').summernote('code');
-                // formData.append('description', description);
-
                 let formData = new FormData(this);
                 let id = $('#id').val();
+                let description = $('#summernote').summernote('code');
+                formData.append('description', description)
+                console.log(description)
+                console.log(formData)
                 let url = isEditMode ? "{{ url('api/v1/tailor/update') }}/" + id :
                     "{{ url('api/v1/tailor/create') }}";
                 console.log(url)
@@ -313,28 +321,26 @@
 
             $(document).on('click', '.edit-modal', function() {
                 let id = $(this).data('id');
-                console.log(id)
+                console.log(id);
                 $(document).on('change', '#tailor', function() {
                     let fileName = $(this).val().split('\\').pop();
                     $('#tailor-label').text(fileName);
                 });
                 $.ajax({
-                    url: "{{ url('api/v1/tailor/get') }}/" +
-                        id,
+                    url: "{{ url('api/v1/tailor/get') }}/" + id,
                     type: 'GET',
                     dataType: 'JSON',
                     success: function(data) {
                         console.log(data);
                         showModal(true);
                         $('#id').val(data.data.id);
-                        $('#tailor_name').val(data.data.tailor_name)
-                        $('#email').val(data.data.email)
-                        $('#address').val(data.data.address)
-                        $('#phone').val(data.data.phone)
-                        $('#tailor_img').html(data.data.tailor_img)
-                        $('#preview').attr('src',
-                            "{{ asset('uploads/tailor') }}/" +
-                            data.data
+                        $('#tailor_name').val(data.data.tailor_name);
+                        $('#email').val(data.data.email);
+                        $('#address').val(data.data.address);
+                        $('#phone').val(data.data.phone);
+                        $('#summernote').summernote('code', data.data.description);
+                        $('#tailor_img').html(data.data.tailor_img);
+                        $('#preview').attr('src', "{{ asset('uploads/tailor') }}/" + data.data
                             .tailor_img);
                         let fileName = data.data.tailor_img.split('/').pop();
                         $('#tailor-label').text(fileName);
