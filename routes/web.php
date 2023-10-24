@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/cms/tailor', function () {
     return view('cms/tailor');
 });
 
