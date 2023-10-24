@@ -4,9 +4,9 @@
 
   <x-container>
     <div class="flex flex-row justify-evenly gap-2">
-      <x-point icon="fa-house" text="Penjahit berpengalaman" />
-      <x-point icon="fa-house" text="Kualitas terjamin" />
-      <x-point icon="fa-smile" text="Layanan yang ramah" />
+      <x-point icon="fa-briefcase" text="Penjahit berpengalaman" />
+      <x-point icon="fa-award" text="Kualitas terjamin" />
+      <x-point icon="fa-face-smile-beam" text="Layanan yang ramah" />
     </div>
   </x-container>
 
@@ -15,7 +15,9 @@
       <div class="w-full sm:w-3/6 flex justify-center">
         <img src="{{ asset('assets/images/people-2.svg') }}" alt="" class="w-1/2">
       </div>
-      <p class="w-full text-center sm:w-3/6 md:text-lg flex items-center pb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur nobis architecto quibusdam veritatis quod. Dolorem placeat obcaecati tempore, reprehenderit tempora libero quia eum molestiae? Ut eligendi et, id repellat repudiandae reiciendis doloremque quae modi quibusdam labore ullam sit ipsum. Vitae maiores quia omnis velit vel libero nulla, ipsum, ratione eaque non quod in officia necessitatibus! Corporis consectetur molestiae eveniet iusto.</p>
+      <p class="w-full text-center sm:w-3/6 md:text-lg flex items-center pb-8">
+        Tempat di mana kebutuhan pakaian Anda bertemu dengan kreativitas para ahli jahit. Kami adalah wadah yang menghubungkan Anda dengan beragam penyedia jasa jahit terpercaya, yang siap mewujudkan desain pakaian impian Anda. Di sini, kami memahami bahwa setiap jahitan memiliki cerita uniknya sendiri, dan itulah yang membedakan kami. Dengan beragam kemampuan dan pengalaman, para penyedia jasa jahit kami siap memberikan pelayanan berkualitas tinggi sesuai dengan keinginan Anda.
+      </p>
     </div>
   </x-container>
 
@@ -30,8 +32,11 @@
     </div>
   </x-container>
 
-  <x-container class="my-8">
+  <x-container class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-32">
     <x-contact/>
+    <div class="hidden sm:flex items-center justify-center">
+      <img src="{{ asset('assets/images/send-message.svg') }}" alt="" class="w-2/3">
+    </div>
   </x-container>
 
   <x-footer/>

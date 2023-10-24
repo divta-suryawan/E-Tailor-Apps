@@ -2,18 +2,28 @@
   <x-navbar/>
 
   <x-container>
-    <div class="flex justify-between items-center" id="profileTailor"></div>
+    <div class="w-full text-center" id="loading">Loading...</div>
   </x-container>
 
-  <hr>
+  <div id="allContent" class="hidden">
+    <x-container>
+      <div class="flex justify-between items-center" id="profileTailor"></div>
+    </x-container>
+  
+    <hr>
+  
+    <x-container>
+      <p id="description"></p>
+    </x-container>
+  
+    <x-container>
+      <div class="text-xl font-semibold mb-4">Paket yang ditawarkan</div>
+      <div class="grid grid-cols-4 gap-4" id="containerPaket"></div>
+    </x-container>
+  </div>
 
-  <x-container>
-    <p id="description"></p>
-  </x-container>
-
-  <x-container>
-    <div class="text-xl font-semibold mb-4">Paket yang ditawarkan</div>
-    <div class="grid grid-cols-4 gap-4" id="containerPaket"></div>
+  <x-container id="dataNotFound" class="hidden">
+    <h1 class="w-full text-center text-xl font-semibold">Rumah Jahit tidak ditemukan</h1>
   </x-container>
 
 </x-template>
@@ -23,11 +33,14 @@
   const pathSegments = path.split('/');
   $.ajax({
     type: "get",
-    url: `{{ url('api/v1/tailor/get/${pathSegments[3]}') }}`,
+    url: `{{ url('api/v1/tailor/get/${pathSegments[2]}') }}`,
     dataType: "json",
     success: function(response) {
       $(document).ready(function() {
-        
+
+        $("#loading").addClass('hidden')
+        response.code === 404 ? $('#dataNotFound').removeClass('hidden') : $("#allContent").removeClass('hidden')
+
         const item = response.data
         // empty container element
         $("#profileTailor").empty();
@@ -48,7 +61,7 @@
 
           <div class="flex flex-col gap-2">
             <a href="#" class="${classBtn}">Hubungi</a>
-            <a href="/app/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
+            <a href="/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
           </div>
         `;
 

@@ -21,11 +21,11 @@ Route::get('/cms/tailor', function () {
 Route::get('example' , [ExampleController::class , 'getAllData']);
 
 // ===== UI =====
-Route::get('/app', function () {
+Route::get('/', function () {
     return view('web/index');
 });
 
-Route::get('/app/rumah-jahit/{parameter?}', function ($parameter = null) {
+Route::get('/rumah-jahit/{parameter?}', function ($parameter = null) {
     if ($parameter) {
         return view('web/rumahJahitTailor');
     } else {
@@ -33,15 +33,14 @@ Route::get('/app/rumah-jahit/{parameter?}', function ($parameter = null) {
     }
 });
 
-Route::get('/app/rumah-jahit/{parameter?}/janji-temu', function() {
+Route::get('/rumah-jahit/{parameter?}/janji-temu', function() {
     return view('web/janjiTemu');
 });
 
-
-Route::get('/app/tentang-kami', function () {
+Route::get('/tentang-kami', function () {
     return view('web/tentangKami');
 });
 
-Route::get('/app/bergabung', function () {
+Route::get('/bergabung', function () {
     return view('web/bergabung');
 });

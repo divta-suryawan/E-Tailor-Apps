@@ -26,7 +26,7 @@
 
         $.each(response.data, function(index, item) {
           var html = /*html*/`
-            <a href="/app/rumah-jahit/${item.id}" class="flex flex-row items-center gap-2 hover:bg-gray-100 rounded-md p-2 cursor-pointer">
+            <a href="/rumah-jahit/${item.id}" class="flex flex-row items-center gap-2 hover:bg-gray-100 rounded-md p-2 cursor-pointer">
               <div>
                 <img src="/uploads/tailor/${item.tailor_img}" alt="" class="w-10 h-10 rounded-full object-cover">
               </div>

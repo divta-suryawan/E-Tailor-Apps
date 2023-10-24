@@ -22,8 +22,8 @@ const activeClass = (id) => {
 }
 
 window.addEventListener('load', () => {
-  urlName === '/app' ? activeClass(getId('beranda')) : null
-  urlName === '/app/rumah-jahit' || urlName.split('/')[2] === 'rumah-jahit' ? activeClass(getId('rumahJahit')) : null
-  urlName === '/app/tentang-kami' ? activeClass(getId('tentangKami')) : null
-  urlName === '/app/bergabung' ? activeClass(getId('bergabung')) : null
+  urlName === '/' ? activeClass(getId('beranda')) : null
+  urlName === '/rumah-jahit' || urlName.split('/')[1] === 'rumah-jahit' ? activeClass(getId('rumahJahit')) : null
+  urlName === '/tentang-kami' ? activeClass(getId('tentangKami')) : null
+  urlName === '/bergabung' ? activeClass(getId('bergabung')) : null
 })
