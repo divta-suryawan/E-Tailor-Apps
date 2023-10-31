@@ -10,9 +10,17 @@
 
   <x-hero/>
 
+  <x-container id="loading">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <x-skeleton-card/>
+      <x-skeleton-card/>
+      <x-skeleton-card/>
+      <x-skeleton-card/>
+    </div>
+  </x-container>
+
   <x-container>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="containerPaket"></div>
-    <div class="w-full text-center" id="loading">Loading...</div>
   </x-container>
 
   <x-footer class="mt-8"/>

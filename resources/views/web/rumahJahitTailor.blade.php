@@ -60,7 +60,7 @@
           </div>
 
           <div class="flex flex-col gap-2">
-            <a href="#" class="${classBtn}">Hubungi</a>
+            <a href="https://wa.me/${item.phone}?text=Hallo kak" class="${classBtn}" target="_blank">Hubungi</a>
             <a href="/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
           </div>
         `;

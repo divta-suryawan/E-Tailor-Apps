@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CMS\ExampleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,20 @@ Route::get('/', function () {
     return view('web/index');
 });
 
-Route::get('/rumah-jahit/{parameter?}', function ($parameter = null) {
-    if ($parameter) {
+Route::get('/paket', function () {
+    return view('web/paketTailor');
+});
+
+Route::get('/rumah-jahit/{parameter}', function ($parameter) {
+    if (Str::isUuid($parameter)) {
         return view('web/rumahJahitTailor');
     } else {
-        return view('web/rumahJahit');
+        return view('web/notFound');
     }
+});
+
+Route::get('/rumah-jahit', function () {
+    return view('web/rumahJahit');
 });
 
 Route::get('/rumah-jahit/{parameter?}/janji-temu', function() {
