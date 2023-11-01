@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TailorModel extends Model
 {
-    use HasFactory , HasUuids;
+    use HasFactory, HasUuids;
     protected $table = 'tb_tailor';
     protected $fillable = [
         'id', 'tailor_name', 'address', 'phone', 'email', 'tailor_img', 'description', 'id_user', 'created_at', 'updated_at'
@@ -18,5 +18,10 @@ class TailorModel extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function packages()
+    {
+        return $this->hasMany(ExampleModel::class, 'id_tailor');
     }
 }

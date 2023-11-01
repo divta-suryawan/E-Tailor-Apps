@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('tb_booking', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name_customer');
+            $table->string('customer_name');
             $table->string('phone_number');
             $table->date('booking_date');
-            $table->date('appointment');
+            $table->date('appointment_date');
             $table->foreignUuid('id_package')->constrained('tb_packages');
             $table->timestamps();
         });

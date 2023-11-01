@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('cms/tailor');
 });
+Route::get('/booking', function () {
+    return view('cms/booking');
+});
 
-Route::get('example' , [ExampleController::class , 'getAllData']);
-
+Route::get('example', [ExampleController::class, 'getAllData']);

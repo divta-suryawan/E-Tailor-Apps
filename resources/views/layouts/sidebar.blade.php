@@ -28,6 +28,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="/booking"  class="nav-link">
+            <i class="nav-icon fa-solid fa-file-arrow-down"></i>
+            <p>Booking</p>
+          </a>
+        </li>
+
 
 
         {{-- @if (auth()->user()->role=='admin')
@@ -37,7 +44,7 @@
               <p>Jenis Surat</p>
             </a>
           </li>
-        
+
           <li class="nav-item">
             <a href="add-user" id="addUser" class="nav-link">
               <i class="nav-icon fa-solid fa-user-plus"></i>
@@ -46,8 +53,8 @@
           </li>
         @endif --}}
 
-        
-        
+
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
