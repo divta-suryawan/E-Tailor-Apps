@@ -4,7 +4,9 @@
   <x-container>
     <div class="lg:px-40 xl:px-80">
       <div class="font-bold text-xl">Ajukan bergabung</div>
-      <div class="mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit non aut ad, laboriosam dolore eius doloremque voluptatem consequuntur suscipit hic.</div>
+      <div class="mb-8">
+        Temukan peluang baru. Segera daftar untuk menjadi penjahit di platform kami dan mulai menjalani perjalanan jahit Anda.
+      </div>
       
       <div class="mb-4">
         <div>Nama anda</div>
@@ -12,18 +14,18 @@
       </div>
   
       <div class="mb-4">
-        <div>Email anda*</div>
+        <div>Email anda</div>
         <input type="email" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
       </div>
 
       <div class="mb-4">
         <div>Subjek</div>
-        <input type="text" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
+        <input type="text" value="Ajuan bergabung" disabled class="border w-full p-2 rounded-sm focus:outline-tailor-100 disabled:bg-gray-200">
       </div>
   
       <div class="mb-4">
         <div>Pesan anda</div>
-        <textarea rows="4" class="border w-full p-2 rounded-sm focus:outline-tailor-100"></textarea>
+        <textarea rows="4" class="border w-full p-2 rounded-sm focus:outline-tailor-100">Saya ingin bergabung menjadi penjahit di E Tailor App</textarea>
       </div>
 
       <div class="flex justify-end w-full">

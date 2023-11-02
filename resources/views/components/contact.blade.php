@@ -1,14 +1,16 @@
 <div class="">
-  <div class="font-bold text-xl">Kirim pesan</div>
-  <div class="mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit non aut ad, laboriosam dolore eius doloremque voluptatem consequuntur suscipit hic.</div>
-  
+  <div class="font-bold text-xl text-center sm:text-start">Kirim pesan</div>
+  <div class="mb-8 text-center sm:text-start">
+    Gunakan layanan ini untuk bertanya, berdiskusi, atau memberikan informasi tambahan tentang proyek jahit Anda. Kami berkomitmen untuk membantu memastikan bahwa setiap detail penting tersampaikan dengan lancar.
+  </div>
+
   <div class="mb-4">
     <div>Nama anda</div>
     <input type="text" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
   </div>
 
   <div class="mb-4">
-    <div>Email anda*</div>
+    <div>Email anda</div>
     <input type="email" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
   </div>
 
