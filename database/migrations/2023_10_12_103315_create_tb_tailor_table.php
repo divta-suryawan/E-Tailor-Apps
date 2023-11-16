@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         Schema::create('tb_tailor', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('tailor_name');
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('tailor_img');
-            $table->foreignUuid('id_user')->constrained('users');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
