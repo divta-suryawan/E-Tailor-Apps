@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('tailor_img');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreignUuid('id_user')->constrained('users');
+            // $table->unsignedBigInteger('id_user');
+            // $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

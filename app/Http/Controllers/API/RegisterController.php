@@ -43,4 +43,9 @@ class RegisterController extends BaseController
             return $this->sendError('Unauthorised!', ['error' =>'Unauthorised']);
         }
     }
+    public function index()
+    {
+        $users = User::all();
+        return view('index', compact('users'));
+    }
 }

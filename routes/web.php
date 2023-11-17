@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\CMS\ExampleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CMS\ExampleController;
+use App\Http\Controllers\API\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('example' , [ExampleController::class , 'getAllData']);
 Route::get('/dashboard', function () {
     return view('cms/dashboard');
 });
+
+Route::get('/users', [RegisterController::class, 'index']);
