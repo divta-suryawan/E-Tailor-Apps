@@ -38,8 +38,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     });
     Route::post('/logout' , [AuthController::class, 'logout']);
 
-    Route::prefix('api/v1/tailor')->controller(TailorController::class)->group(function () {
+    Route::prefix('v1/tailor')->controller(TailorController::class)->group(function () {
         Route::get('/', 'getAllData');
+        Route::get('/getDataByUser', 'getDataByUser');
         Route::post('/create', 'createData');
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
