@@ -182,7 +182,7 @@
 
             $.ajax({
                 type: "get",
-                url: "{{ url('api/v1/packages') }}",
+                url: "{{ url('/v1/packages/get/package/tailor') }}",
                 dataType: "json",
                 success: function(response) {
                     console.log(response)
@@ -270,7 +270,7 @@
             // get tailor name
             $.ajax({
                 type: 'get',
-                url: '/api/v1/tailor/',
+                url: '/v1/tailor/getDataByUser',
                 dataType: 'json',
                 success: function(response) {
                     console.log(response);
@@ -310,8 +310,8 @@
                 formData.append('description', description)
                 console.log(description)
                 console.log(formData)
-                let url = isEditMode ? "{{ url('api/v1/packages/update') }}/" + id :
-                    "{{ url('api/v1/packages/create') }}";
+                let url = isEditMode ? "{{ url('/v1/packages/update') }}/" + id :
+                    "{{ url('/v1/packages/create') }}";
                 console.log(url)
                 $.ajax({
                     type: "POST",
@@ -366,7 +366,7 @@
                     $('#tailor-label').text(fileName);
                 });
                 $.ajax({
-                    url: "{{ url('api/v1/packages/get') }}/" + id,
+                    url: "{{ url('/v1/packages/get') }}/" + id,
                     type: 'GET',
                     dataType: 'JSON',
                     success: function(data) {
@@ -426,7 +426,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ url('api/v1/packages/delete') }}/" + id,
+                            url: "{{ url('/v1/packages/delete') }}/" + id,
                             data: {
                                 "_token": "{{ csrf_token() }}",
                                 "id": id

@@ -8,12 +8,12 @@
         <div>Nama anda</div>
         <input type="text" id="nama" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
       </div>
-  
+
       <div class="mb-4">
         <div>Nomor telepon / whatsapp</div>
         <input type="text" id="phone" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
       </div>
-  
+
       <div class="mb-4">
         <div>Tanggal ketemu</div>
         <input type="date" id="tanggal" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
@@ -48,6 +48,7 @@
       id_package: pathSegmentsPac[2]
     },
     success: function(response) {
+        console.log(response);
       if (response.code === 422) {
         Swal.fire({
           icon: 'error',
@@ -58,7 +59,7 @@
         Swal.fire({
           icon: 'success',
           title: 'Berhasil Booking!',
-          text: 'Anda telah melakukan janji ketemu pada '+ tanggal.value 
+          text: 'Anda telah melakukan janji ketemu pada '+ tanggal.value
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = '/';

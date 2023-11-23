@@ -6,6 +6,7 @@ use App\Http\Requests\PackagesRequest;
 use App\Interfaces\PackagesInterfaces;
 use App\Models\PackagesModel;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -27,6 +28,17 @@ class PackagesRepositories implements PackagesInterfaces
             return $this->success($data);
         }
     }
+    public function getAllDataByTailor()
+    {
+        $user = Auth::user();
+        if ($user->role == 'user') {
+            $data = $this->packagesModel::with('tailor')->where('id_user', $user->id)->get();
+            return $this->success($data);
+        } else {
+            $data = $this->packagesModel::with('tailor')->get();
+            return $this->success($data);
+        }
+    }
 
     public function getDataPacketByTailor($id_tailor)
     {
@@ -41,11 +53,13 @@ class PackagesRepositories implements PackagesInterfaces
     public function createData(PackagesRequest $request)
     {
         try {
+            $user = Auth::user();
             $data = new $this->packagesModel;
             $data->package_name = $request->input('package_name');
             $data->package_price = $request->input('package_price');
             $data->description = $request->input('description');
             $data->id_tailor = $request->input('id_tailor');
+            $data->id_user = $user->id;
             if ($request->hasFile('package_image')) {
                 $file = $request->file('package_image');
                 $extention = $file->getClientOriginalExtension();
