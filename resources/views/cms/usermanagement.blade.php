@@ -239,7 +239,7 @@
                 }
                 isEditMode = false;
                 $('.modal-title').text('Tambah Data');
-                $('.modal-footer button[type="submit"]').text('Submit');
+                $('.modal-footer button[type="submit"]').text('Create User');
             });
 
             $(document).on('click', '.delete-confirm', function(e) {
