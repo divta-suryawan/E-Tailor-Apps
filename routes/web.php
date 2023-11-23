@@ -18,7 +18,9 @@ use Illuminate\Support\Str;
 Route::get('/cms/tailor', function () {
     return view('cms/tailor');
 });
-
+Route::get('/cms/usermanagement', function () {
+    return view('cms/usermanagement');
+});
 Route::get('example' , [ExampleController::class , 'getAllData']);
 
 // ===== UI =====
