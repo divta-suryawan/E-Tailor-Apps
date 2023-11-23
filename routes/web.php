@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CMS\AuthController;
 use App\Http\Controllers\CMS\ExampleController;
+use App\Http\Controllers\CMS\TailorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -16,14 +18,33 @@ use Illuminate\Support\Str;
 */
 
 //* cms
-Route::get('/cms/tailor', function () {
-    return view('cms.tailor');
+Route::middleware('guest')->group(function () {
+    Route::get('/cms/login', function () {
+        return view('cms/auth/login');
+    });
+    Route::post('/login' , [AuthController::class, 'login']);
 });
-Route::get('/cms/packages', function () {
-    return view('cms.packages');
-});
-Route::get('/cms/usermanagement', function () {
-    return view('cms/usermanagement');
+
+
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/cms/tailor', function () {
+        return view('cms.tailor');
+    });
+    Route::get('/cms/packages', function () {
+        return view('cms.packages');
+    });
+    Route::get('/cms/usermanagement', function () {
+        return view('cms/usermanagement');
+    });
+    Route::post('/logout' , [AuthController::class, 'logout']);
+
+    Route::prefix('api/v1/tailor')->controller(TailorController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
 });
 // *end cms
 
