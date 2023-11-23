@@ -3,10 +3,14 @@
 namespace App\Repositories;
 
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Login\LoginRequest;
 use App\Interfaces\AuthInterfaces;
 use App\Models\User;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthRepositories implements AuthInterfaces
 {
@@ -49,7 +53,7 @@ class AuthRepositories implements AuthInterfaces
         $data = $this->userModel::find($id);
         if (!$data) {
             return $this->idOrDataNotFound();
-        }else{
+        } else {
             return $this->success($data);
         }
     }
@@ -76,7 +80,7 @@ class AuthRepositories implements AuthInterfaces
             $data = $this->userModel::find($id);
             if (!$data) {
                 return $this->idOrDataNotFound();
-            }else{
+            } else {
                 $data->delete();
             }
         } catch (\Throwable $th) {
@@ -85,4 +89,34 @@ class AuthRepositories implements AuthInterfaces
         return $this->delete();
     }
 
+    public function login(LoginRequest $request)
+    {
+        try {
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                return response()->json([
+                    'code' => 401,
+                    'message' => 'Login failed'
+                ]);
+            }
+
+            $user =  $this->userModel::where('email', $request['email'])->first();
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return $this->success([
+                'user' => $user,
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ]);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user('web')->tokens()->delete();
+        Auth::guard('web')->logout();
+        return response()->json([
+            'message' => 'success logout'
+        ]);
+    }
 }
