@@ -39,12 +39,13 @@ Route::prefix('v1/packages')->controller(PackagesController::class)->group(funct
     Route::delete('/delete/{id}', 'deleteData');
 });
 
-Route::prefix('v1/auth')->controller(AuthController::class)->group(function () {
-    Route::get('/', 'getAllData');
-    Route::post('/createData', 'createData');
-    Route::get('/getDataById/{id}', 'getDataById');
-    Route::post('/updateData/{id}', 'updateData');
-    Route::delete('/deleteData/{id}', 'deleteData');
+Route::prefix('v1/auth')->controller(AuthController::class)->group(function() {
+    Route::get('/' , 'getAllData');
+    Route::post('/createData' , 'createData');
+    Route::get('/getDataById/{id}' , 'getDataById');
+    Route::post('/updateData/{id}' , 'updateData');
+    Route::delete('/deleteData/{id}' , 'deleteData');
+    Route::post('/login' , 'login');
 });
 Route::prefix('v1/booking')->controller(BookingController::class)->group(function () {
     Route::get('/', 'getAllData');

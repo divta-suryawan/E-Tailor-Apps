@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthRequest;
+use App\Http\Requests\Login\LoginRequest;
 use App\Repositories\AuthRepositories;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,15 @@ class AuthController extends Controller
     public function deleteData($id)
     {
         return $this->authRepositories->deleteData($id);
+    }
+
+    public function login(LoginRequest $request)
+    {
+        return $this->authRepositories->login($request);
+    }
+
+    public function logout(Request $request)
+    {
+        return $this->authRepositories->logout($request);
     }
 }
