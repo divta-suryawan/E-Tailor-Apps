@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CMS\AuthController;
 use App\Http\Controllers\CMS\ExampleController;
+use App\Http\Controllers\CMS\PackagesController;
 use App\Http\Controllers\CMS\TailorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -22,7 +23,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/cms/login', function () {
         return view('cms/auth/login');
     });
-    Route::post('/login' , [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
 
@@ -36,13 +37,23 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/usermanagement', function () {
         return view('cms/usermanagement');
     });
-    Route::post('/logout' , [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('v1/tailor')->controller(TailorController::class)->group(function () {
         Route::get('/', 'getAllData');
         Route::get('/getDataByUser', 'getDataByUser');
         Route::post('/create', 'createData');
         Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
+    Route::prefix('v1/packages')->controller(PackagesController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::get('/get/package/tailor', 'getDataByTailor');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::get('/get/tailor/{id_tailor}', 'getDataPacketByTailor');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
     });

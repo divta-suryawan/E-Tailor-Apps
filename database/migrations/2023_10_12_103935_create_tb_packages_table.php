@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('package_image');
             $table->text('description');
             $table->foreignUuid('id_tailor')->constrained('tb_tailor');
+            $table->foreignUuid('id_user')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
