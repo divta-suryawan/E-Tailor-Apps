@@ -19,6 +19,12 @@ class PackagesController extends Controller
     {
         return $this->packagesRepo->getAllData();
     }
+
+    public function getDataPacketByTailor($id_tailor)
+    {
+        return $this->packagesRepo->getDataPacketByTailor($id_tailor);
+    }
+
     public function createData(PackagesRequest $request)
     {
         return $this->packagesRepo->createData($request);

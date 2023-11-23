@@ -6,6 +6,9 @@ use App\Http\Requests\PackagesRequest;
 use App\Interfaces\PackagesInterfaces;
 use App\Models\PackagesModel;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PackagesRepositories implements PackagesInterfaces
 {
@@ -24,14 +27,33 @@ class PackagesRepositories implements PackagesInterfaces
             return $this->success($data);
         }
     }
+
+    public function getDataPacketByTailor($id_tailor)
+    {
+        $data = $this->packagesModel::where('id_tailor', $id_tailor)->get();
+        if (!$data) {
+            return $this->idOrDataNotFound();
+        } else {
+            return $this->success($data);
+        };
+    }
+
     public function createData(PackagesRequest $request)
     {
         try {
             $data = new $this->packagesModel;
-            $data->package_name = htmlspecialchars($request->input('package_name'));
-            $data->package_price = htmlspecialchars($request->input('package_price'));
-            $data->description = htmlspecialchars($request->input('description'));
-            $data->id_tailor = htmlspecialchars($request->input('id_tailor'));
+            $data->package_name = $request->input('package_name');
+            $data->package_price = $request->input('package_price');
+            $data->description = $request->input('description');
+            $data->id_tailor = $request->input('id_tailor');
+            if ($request->hasFile('package_image')) {
+                $file = $request->file('package_image');
+                $extention = $file->getClientOriginalExtension();
+                $filename = 'PACKET-' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('uploads/packages');
+                $file->move(public_path('uploads/packages'), $filename);
+                $data->package_image = $filename;
+            }
             $data->save();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
@@ -52,10 +74,22 @@ class PackagesRepositories implements PackagesInterfaces
     {
         try {
             $data = $this->packagesModel::where('id', $id)->first();
-            $data->package_name = htmlspecialchars($request->input('package_name'));
-            $data->package_price = htmlspecialchars($request->input('package_price'));
-            $data->description = htmlspecialchars($request->input('description'));
-            $data->id_tailor = htmlspecialchars($request->input('id_tailor'));
+            $data->package_name = $request->input('package_name');
+            $data->package_price = $request->input('package_price');
+            $data->description = $request->input('description');
+            if ($request->hasFile('package_image')) {
+                $file = $request->file('package_image');
+                $extention = $file->getClientOriginalExtension();
+                $filename = 'PACKET-' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('uploads/packages');
+                $file->move(public_path('uploads/packages'), $filename);
+                $old_file  = public_path('uploads/packages') . $data->package_image;
+                if (file_exists($old_file)) {
+                    unlink($old_file);
+                }
+                $data->package_image = $filename;
+            }
+            $data->id_tailor = $request->input('id_tailor');
             $data->save();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
@@ -65,12 +99,17 @@ class PackagesRepositories implements PackagesInterfaces
 
     public function deleteData($id)
     {
-        try {
-            $data = $this->packagesModel::where('id', $id)->first();
+        $data = $this->packagesModel::where('id', $id)->first();
+        if (!$data) {
+            return $this->idOrDataNotFound();
+        } else {
+            $location = 'uploads/packages/' . $data->package_image;
             $data->delete();
-            return $this->delete();
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), 400, $th, class_basename($this), __FUNCTION__);
+            if (File::exists($location)) {
+                File::delete($location);
+            }
         }
+
+        return $this->delete();
     }
 }
