@@ -6,6 +6,7 @@ use App\Http\Requests\TailorRequest;
 use App\Interfaces\TailorInterfaces;
 use App\Models\TailorModel;
 use App\Traits\HttpResponseTraits;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,10 +23,12 @@ class TailorRepositories implements TailorInterfaces
 
     public function getAllData()
     {
-        $data = $this->tailorModel::all();
-        if ($data->isEmpty()) {
-            return $this->dataNotFound();
-        } else {
+        $user = Auth::user();
+        if ($user->role == 'user') {
+            $data = $this->tailorModel::where('id_user' , $user->id)->get();
+            return $this->success($data);
+        }else{
+            $data = $this->tailorModel::all();
             return $this->success($data);
         }
     }
@@ -34,10 +37,12 @@ class TailorRepositories implements TailorInterfaces
     {
         try {
             $data = new $this->tailorModel;
+            $user = Auth::user();
             $data->tailor_name = htmlspecialchars($request->input('tailor_name'));
             $data->address = htmlspecialchars($request->input('address'));
             $data->phone = htmlspecialchars($request->input('phone'));
             $data->email = htmlspecialchars($request->input('email'));
+            $data->id_user = $user->id;
             if ($request->hasFile('tailor_img')) {
                 $file = $request->file('tailor_img');
                 $extention = $file->getClientOriginalExtension();

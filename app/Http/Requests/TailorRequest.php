@@ -33,7 +33,7 @@ class TailorRequest extends FormRequest
            
         } else {
             $rules['tailor_name'] = 'required';
-            $rules['email'] = 'required|email|unique:tb_tailor';
+            $rules['email'] = 'required|email';
             $rules['address'] = 'required';
             $rules['phone'] = 'required';
             $rules['tailor_img'] = 'required|mimes:png,jpg,jpeg';
@@ -52,7 +52,6 @@ class TailorRequest extends FormRequest
             'phone.required' => 'Nomor handphone wajib diisi !',
             'phone.numeric' => 'Format harus angka',
             'email.required' => 'Email wajib diisi !',
-            'email.unique' => 'Email sudah ada sebelumnya',
             'email.email' => 'format harus email',
             'tailor_img.required' => 'Gambar toko wajib diisi !',
             'tailor.mimes' => 'Format harus png,jpg,jpeg',

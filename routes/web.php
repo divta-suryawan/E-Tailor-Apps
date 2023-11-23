@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CMS\AuthController;
 use App\Http\Controllers\CMS\ExampleController;
+use App\Http\Controllers\CMS\TailorController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -36,6 +37,14 @@ Route::middleware(['web', 'auth'])->group(function () {
         return view('cms/usermanagement');
     });
     Route::post('/logout' , [AuthController::class, 'logout']);
+
+    Route::prefix('api/v1/tailor')->controller(TailorController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
 });
 // *end cms
 
