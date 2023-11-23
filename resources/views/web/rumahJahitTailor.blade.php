@@ -31,12 +31,31 @@
 <script>
   const path = location.pathname
   const pathSegments = path.split('/');
+
+  const formatRupiahPac = (nilai) => {
+    // Menggunakan fungsi toLocaleString() untuk memformat nilai ke dalam format mata uang lokal
+    return "Rp " + nilai.toLocaleString('id-ID');
+  }
+
+  let tailorId
+  let tailorImage
+  let tailorName
+  let tailorAddress
+  let tailorPhone
+
+  // get data tailor
   $.ajax({
     type: "get",
     url: `{{ url('api/v1/tailor/get/${pathSegments[2]}') }}`,
     dataType: "json",
     success: function(response) {
       $(document).ready(function() {
+        let data = response.data
+        tailorId = data.id
+        tailorName = data.tailor_name
+        tailorImage = data.tailor_img
+        tailorAddress = data.address
+        tailorPhone = data.phone
 
         $("#loading").addClass('hidden')
         response.code === 404 ? $('#dataNotFound').removeClass('hidden') : $("#allContent").removeClass('hidden')
@@ -61,13 +80,50 @@
 
           <div class="flex flex-col gap-2">
             <a href="https://wa.me/${item.phone}?text=Hallo kak" class="${classBtn}" target="_blank">Hubungi</a>
-            <a href="/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
           </div>
-        `;
+          `;
+          // <a href="/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
 
         // add element to container
         $("#profileTailor").append(html);
         $("#description").append(item.description)
+
+        // =========================================
+        // get data paket
+        $.ajax({
+          type: "get",
+          url: `{{ url('api/v1/packages/get/tailor/${pathSegments[2]}') }}`,
+          dataType: "json",
+          success: (response) => {
+            $(document).ready(() => {
+              
+              console.log(response, '<-- paket');
+              // empty container element
+              // $("#loading").addClass('hidden')
+              $("#containerPaket").empty();
+
+              $.each(response.data, function(index, item) {
+                const html = /*html*/`
+                  <x-card-paket
+                    href="/rumah-jahit/${item.id}/janji-temu"
+                    src="/uploads/packages/${item.package_image}"
+                    profile="/uploads/tailor/${tailorImage}"
+                    name="${tailorName}"
+                    title="${item.package_name}"
+                    price="${formatRupiahPac(item.package_price)}"
+                  />
+                `
+                
+                // add element to container
+                $("#containerPaket").append(html);
+              });
+            })
+          },
+          error: () => {
+            console.log("Failed to get data from the server");
+          }
+        })
+
       });
 
     },

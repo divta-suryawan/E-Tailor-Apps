@@ -10,31 +10,45 @@
       
       <div class="mb-4">
         <div>Nama anda</div>
-        <input type="text" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
+        <input type="text" id="nama" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
       </div>
   
       <div class="mb-4">
         <div>Email anda</div>
-        <input type="email" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
+        <input type="email" id="email" class="border w-full p-2 rounded-sm focus:outline-tailor-100">
       </div>
 
       <div class="mb-4">
         <div>Subjek</div>
-        <input type="text" value="Ajuan bergabung" disabled class="border w-full p-2 rounded-sm focus:outline-tailor-100 disabled:bg-gray-200">
+        <input type="text" id="subjek" value="Ajuan bergabung" disabled class="border w-full p-2 rounded-sm focus:outline-tailor-100 disabled:bg-gray-200">
       </div>
   
       <div class="mb-4">
         <div>Pesan anda</div>
-        <textarea rows="4" class="border w-full p-2 rounded-sm focus:outline-tailor-100">Saya ingin bergabung menjadi penjahit di E Tailor App</textarea>
+        <textarea rows="4" id="pesan" class="border w-full p-2 rounded-sm focus:outline-tailor-100">Saya ingin bergabung menjadi penjahit di E Tailor App</textarea>
       </div>
 
       <div class="flex justify-end w-full">
-        <button class="bg-tailor-100 hover:bg-tailor-200 text-white py-2 px-4 rounded-md duration-150">Kirim</button>
+        <button id="kirim" class="bg-tailor-100 hover:bg-tailor-200 text-white py-2 px-4 rounded-md duration-150">Kirim</button>
       </div>
 
     </div>
 
   </x-container>
 
+  <a href=""></a>
   <x-footer class="mt-8" />
 </x-template>
+
+<script>
+  const nama = document.getElementById('nama')
+  const email = document.getElementById('email')
+  const subjek = document.getElementById('subjek')
+  const pesan = document.getElementById('pesan')
+  const kirim = document.getElementById('kirim')
+
+  kirim.addEventListener('click', () => {
+    window.open(`https://wa.me/+6283133118728?text=halo kak, saya ${nama.value} dengan ${email.value}, ${pesan.value}`, '_blank')
+  })
+
+</script>
