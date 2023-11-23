@@ -33,6 +33,12 @@
             <p>Paket</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ url('cms/usermanagement') }}" id="userManagement" class="nav-link">
+            <i class="nav-icon fa-solid fa-user"></i>
+            <p>User Management</p>
+          </a>
+        </li>
 
 
 

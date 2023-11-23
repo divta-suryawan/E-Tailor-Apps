@@ -22,7 +22,11 @@ Route::get('/cms/tailor', function () {
 Route::get('/cms/packages', function () {
     return view('cms.packages');
 });
+Route::get('/cms/usermanagement', function () {
+    return view('cms/usermanagement');
+});
 // *end cms
+
 
 Route::get('example', [ExampleController::class, 'getAllData']);
 
