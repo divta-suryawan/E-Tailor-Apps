@@ -40,6 +40,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="/booking"  class="nav-link">
+            <i class="nav-icon fa-solid fa-file-arrow-down"></i>
+            <p>Booking</p>
+          </a>
+        </li>
+
 
 
         {{-- @if (auth()->user()->role=='admin')

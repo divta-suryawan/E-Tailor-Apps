@@ -34,6 +34,9 @@ Route::get('example', [ExampleController::class, 'getAllData']);
 Route::get('/', function () {
     return view('web/index');
 });
+Route::get('/booking', function () {
+    return view('cms/booking');
+});
 
 Route::get('/paket', function () {
     return view('web/paketTailor');
