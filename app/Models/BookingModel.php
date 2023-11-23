@@ -21,6 +21,6 @@ class BookingModel extends Model
 
     public function package()
     {
-        return $this->belongsTo(ExampleModel::class, 'id_package');
+        return $this->belongsTo(PackagesModel::class, 'id_package');
     }
 }

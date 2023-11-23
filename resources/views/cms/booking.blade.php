@@ -108,7 +108,7 @@
             // get data booking
             function getDataBooking() {
                 $.ajax({
-                    url: `/api/v2/booking`,
+                    url: `/api/v1/booking`,
                     method: "GET",
                     dataType: "json",
                     success: function (response) {
@@ -152,7 +152,7 @@
             // get data packet
             function loadPackageOptions() {
                 $.ajax({
-                    url: '/example',
+                    url: '/api/v1/packages',
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
@@ -181,7 +181,7 @@
                 $('#bookingLabel').text('Edit Data');
                 $.ajax({
                     type: 'GET',
-                    url: `/api/v2/booking/get/${id}`,
+                    url: `/api/v1/booking/get/${id}`,
                     success: function(response) {
                         $('#id').val(response.data.id);
                         $('#id_package').val(response.data.id_package);
@@ -228,7 +228,7 @@
                 if (id) {
                     $.ajax({
                         type: 'post',
-                        url: `/api/v2/booking/update/${id}`,
+                        url: `/api/v1/booking/update/${id}`,
                         data: data,
                         success: function(response) {
                             if (response.code === 422) {
@@ -249,9 +249,10 @@
                 } else {
                     $.ajax({
                         type: 'POST',
-                        url: '/api/v2/booking/create',
+                        url: '/api/v1/booking/create',
                         data: data,
                         success: function(response) {
+                            console.log(response);
                             if (response.code === 422) {
                                showSweetAlert('warning', 'Errors',response.errors)
                             } else if (response.code === 200) {
@@ -286,7 +287,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ url('api/v2/booking/delete') }}/" + id,
+                            url: "{{ url('api/v1/booking/delete') }}/" + id,
                             data: {
                                 "_token": "{{ csrf_token() }}",
                                 "id": id

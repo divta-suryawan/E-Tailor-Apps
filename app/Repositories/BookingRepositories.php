@@ -12,12 +12,10 @@ use Carbon\Carbon;
 class BookingRepositories implements BookingInterfaces
 {
     use HttpResponseTraits;
-    protected $exampleModel;
     protected $bookingModel;
 
-    public function __construct(ExampleModel $exampleModel, BookingModel $bookingModel)
+    public function __construct(BookingModel $bookingModel)
     {
-        $this->exampleModel = $exampleModel;
         $this->bookingModel = $bookingModel;
     }
 
