@@ -96,10 +96,10 @@ class TailorRepositories implements TailorInterfaces
 
     public function deleteData($id)
     {
-        $data = $this->tailorModel::where('id' , $id)->first();
+        $data = $this->tailorModel::where('id', $id)->first();
         if (!$data) {
             return $this->idOrDataNotFound();
-        }else{
+        } else {
             $location = 'uploads/tailor/' . $data->tailor_img;
             $data->delete();
             if (File::exists($location)) {

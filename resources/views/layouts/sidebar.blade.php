@@ -22,9 +22,21 @@
         </li>
 
         <li class="nav-item">
-          <a href="/" id="suratMasuk" class="nav-link">
+          <a href="/cms/tailor" class="nav-link">
             <i class="nav-icon fa-solid fa-file-arrow-down"></i>
             <p>Tailor</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/cms/packages" class="nav-link">
+            <i class="nav-icon fa-solid fa-file-arrow-down"></i>
+            <p>Paket</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url('cms/usermanagement') }}" id="userManagement" class="nav-link">
+            <i class="nav-icon fa-solid fa-user"></i>
+            <p>User Management</p>
           </a>
         </li>
 
