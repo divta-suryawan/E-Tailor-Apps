@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CMS\AuthController;
 use App\Http\Controllers\CMS\TailorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,12 @@ Route::prefix('v1/tailor')->controller(TailorController::class)->group(function(
     Route::get('/get/{id}' , 'getDataById');
     Route::post('/update/{id}' , 'updateData');
     Route::delete('/delete/{id}' , 'deleteData');
+});
+
+Route::prefix('v1/auth')->controller(AuthController::class)->group(function() {
+    Route::get('/' , 'getAllData');
+    Route::post('/createData' , 'createData');
+    Route::get('/getDataById/{id}' , 'getDataById');
+    Route::post('/updateData/{id}' , 'updateData');
+    Route::delete('/deleteData/{id}' , 'deleteData');
 });
