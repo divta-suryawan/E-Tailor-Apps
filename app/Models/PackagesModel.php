@@ -14,6 +14,7 @@ class PackagesModel extends Model
         'id',
         'package_name',
         'package_price',
+        'package_image',
         'description',
         'id_tailor',
         'created_at',

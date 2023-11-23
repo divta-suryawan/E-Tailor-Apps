@@ -29,6 +29,22 @@ class PackagesRequest extends FormRequest
             'description' => 'required',
             'id_tailor' => 'required',
         ];
+        if ($this->is('api/v1/packages/update/*')) {
+            $rules['package_name'] = 'required';
+            $rules['package_price'] = 'required|numeric';
+            $rules['package_image'] = 'mimes:png,jpg,jpeg';
+            $rules['description'] = 'required';
+            $rules['id_tailor'] = 'required';
+        } else {
+            $rules['package_name'] = 'required';
+            $rules['package_price'] = 'required|numeric';
+            $rules['address'] = 'required';
+            $rules['package_image'] = 'required|mimes:png,jpg,jpeg';
+            $rules['description'] = 'required';
+            $rules['id_tailor'] = 'required';
+        }
+
+        return $rules;
     }
 
     public function messages()
@@ -38,6 +54,8 @@ class PackagesRequest extends FormRequest
             'package_price.required' => 'Form harga paket harus diisi.',
             'package_price.numeric' => 'Form harga paket harus berupa angkat.',
             'description.required' => 'Form deskripsi  harus disisi',
+            'package_image.required' => 'Fomr gambar paket wajib diisi',
+            'package_image.mimes' => 'Format harus png,jpg,jpeg',
             'id_tailor.required' => 'Form toko tailor wajib diisi.',
         ];
     }

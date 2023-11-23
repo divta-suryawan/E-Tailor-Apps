@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tb_packages', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('package_name');
-            $table->string('package_price');
+            $table->integer('package_price');
+            $table->string('package_image');
             $table->text('description');
             $table->foreignUuid('id_tailor')->constrained('tb_tailor');
             $table->timestamps();

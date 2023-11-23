@@ -359,7 +359,7 @@
                 $('#address').val('');
                 $('#phone').val('');
                 $('#tailor_img').val('');
-                $('#summernote').summernote('code', ''); 
+                $('#summernote').summernote('code', '');
                 $('#preview').attr('src', '').hide();
                 $('#tailor-label').text('Upload gambar');
             }

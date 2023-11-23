@@ -33,6 +33,7 @@ Route::prefix('v1/packages')->controller(PackagesController::class)->group(funct
     Route::get('/', 'getAllData');
     Route::post('/create', 'createData');
     Route::get('/get/{id}', 'getDataById');
+    Route::get('/get/tailor/{id_tailor}', 'getDataPacketByTailor');
     Route::post('/update/{id}', 'updateData');
     Route::delete('/delete/{id}', 'deleteData');
 });
