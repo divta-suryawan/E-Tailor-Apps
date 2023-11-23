@@ -23,6 +23,16 @@ class TailorRepositories implements TailorInterfaces
 
     public function getAllData()
     {
+        $data = $this->tailorModel::all();
+        if ($data->isEmpty()) {
+            return $this->dataNotFound();
+        } else {
+            return $this->success($data);
+        }
+    }
+
+    public function getDataByUser()
+    {
         $user = Auth::user();
         if ($user->role == 'user') {
             $data = $this->tailorModel::where('id_user' , $user->id)->get();
@@ -36,8 +46,8 @@ class TailorRepositories implements TailorInterfaces
     public function createData(TailorRequest $request)
     {
         try {
-            $data = new $this->tailorModel;
             $user = Auth::user();
+            $data = new $this->tailorModel;
             $data->tailor_name = htmlspecialchars($request->input('tailor_name'));
             $data->address = htmlspecialchars($request->input('address'));
             $data->phone = htmlspecialchars($request->input('phone'));

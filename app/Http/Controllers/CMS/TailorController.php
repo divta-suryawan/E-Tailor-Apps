@@ -20,6 +20,10 @@ class TailorController extends Controller
     {
         return $this->tailorRepostories->getAllData();
     }
+    public function getDataByUser()
+    {
+        return $this->tailorRepostories->getDataByUser();
+    }
 
     public function createData(TailorRequest $request)
     {
