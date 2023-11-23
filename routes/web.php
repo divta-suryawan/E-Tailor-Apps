@@ -15,11 +15,16 @@ use Illuminate\Support\Str;
 |
 */
 
+//* cms
 Route::get('/cms/tailor', function () {
-    return view('cms/tailor');
+    return view('cms.tailor');
 });
+Route::get('/cms/packages', function () {
+    return view('cms.packages');
+});
+// *end cms
 
-Route::get('example' , [ExampleController::class , 'getAllData']);
+Route::get('example', [ExampleController::class, 'getAllData']);
 
 // ===== UI =====
 Route::get('/', function () {
@@ -42,7 +47,7 @@ Route::get('/rumah-jahit', function () {
     return view('web/rumahJahit');
 });
 
-Route::get('/rumah-jahit/{parameter?}/janji-temu', function() {
+Route::get('/rumah-jahit/{parameter?}/janji-temu', function () {
     return view('web/janjiTemu');
 });
 

@@ -22,9 +22,15 @@
         </li>
 
         <li class="nav-item">
-          <a href="/" id="suratMasuk" class="nav-link">
+          <a href="/cms/tailor" class="nav-link">
             <i class="nav-icon fa-solid fa-file-arrow-down"></i>
             <p>Tailor</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/cms/packages" class="nav-link">
+            <i class="nav-icon fa-solid fa-file-arrow-down"></i>
+            <p>Paket</p>
           </a>
         </li>
 
@@ -37,7 +43,7 @@
               <p>Jenis Surat</p>
             </a>
           </li>
-        
+
           <li class="nav-item">
             <a href="add-user" id="addUser" class="nav-link">
               <i class="nav-icon fa-solid fa-user-plus"></i>
@@ -46,8 +52,8 @@
           </li>
         @endif --}}
 
-        
-        
+
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
