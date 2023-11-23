@@ -21,9 +21,15 @@
       </a>
       <a href="/bergabung" class="duration-150 px-4 py-2 rounded-md hover:bg-gray-600 w-16 sm:w-fit text-center" id="bergabung">
         <span class="text-2xl sm:hidden">
-          <i class="fa-solid fa-right-to-bracket"></i>
+          <i class="fa-solid fa-envelope-circle-check"></i>
         </span>
         <span class="hidden sm:block">Bergabung</span>
+      </a>
+      <a href="/bergabung" class="duration-150 px-4 py-2 rounded-md hover:bg-gray-600 w-16 sm:w-fit text-center" id="bergabung">
+        <span class="text-2xl sm:hidden">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </span>
+        <span class="hidden sm:block">Masuk</span>
       </a>
     </div>
   </x-container>

@@ -32,7 +32,9 @@
     <div class="text-center sm:text-end">
       <div class="text-lg font-semibold mb-1">Hubungi Kami</div>
       <div class="flex flex-col sm:justify-end text-sm">
-        <div>WhatsApp: 0877 2222 1111</div>
+        <a class="hover:underline" target="_blank" href="https://wa.me/+6283133118728?text=Hallo kak, mau tanya seputaran E-Tailor dong...">
+          <div>WhatsApp: 0831 3311 8728</div>
+        </a>
         <div>Lokasi: Kota Palu</div>
       </div>
     </div>
