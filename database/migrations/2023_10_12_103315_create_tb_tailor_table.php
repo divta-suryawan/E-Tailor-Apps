@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('tailor_name');
             $table->string('address');
             $table->string('phone');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('tailor_img');
             $table->string('description');
             $table->foreignUuid('id_user')->nullable()->constrained('users');
