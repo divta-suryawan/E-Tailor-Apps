@@ -53,8 +53,8 @@
       <x-card-team image="fandi.webp" name="fandi ahmad" position="frontend developer"/>
       <x-card-team image="rizki.jpeg" name="muhammad rizki" position="backend developer"/>
       <x-card-team image="divta.jpeg" name="i ketut divta suryawan" position="backend developer"/>
-      <x-card-team image="baju-jahit-2.jpeg" name="alan rizki" position="IT Support"/>
-      <x-card-team image="baju-jahit-2.jpeg" name="siti rahayu" position="IT Support"/>
+      <x-card-team image="empty.png" name="alan rizki" position="IT Support"/>
+      <x-card-team image="empty.png" name="siti rahayu" position="IT Support"/>
     </div>
   </x-container>
 

@@ -38,16 +38,17 @@
     url: `{{ url('api/v1/packages/') }}`,
     dataType: "json",
     success: (response) => {
-      console.log(response, '<-- success get all data');
       $(document).ready(() => {
         // empty container element
         $("#loading").addClass('hidden')
         $("#containerPaket").empty();
 
+        console.log(response, '<-- response')
+
         $.each(response.data, function(index, item) {
           const html = /*html*/`
             <x-card-paket
-              href="/rumah-jahit/${item.tailor.id}/janji-temu"
+              href="/rumah-jahit/${item.id}/janji-temu"
               src="uploads/tailor/${item.tailor.tailor_img}"
               profile="uploads/tailor/${item.tailor.tailor_img}"
               name="${item.tailor.tailor_name}"

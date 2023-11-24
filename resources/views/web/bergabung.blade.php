@@ -36,10 +36,10 @@
 
   </x-container>
 
-  <a href=""></a>
   <x-footer class="mt-8" />
 </x-template>
 
+<script src="{{ asset('assets/sweetalert/script.js')}}"></script>
 <script>
   const nama = document.getElementById('nama')
   const email = document.getElementById('email')
@@ -48,7 +48,15 @@
   const kirim = document.getElementById('kirim')
 
   kirim.addEventListener('click', () => {
-    window.open(`https://wa.me/+6283133118728?text=halo kak, saya ${nama.value} dengan ${email.value}, ${pesan.value}`, '_blank')
+    if (nama.value && email.value && pesan.value) {
+      window.open(`https://wa.me/+6283133118728?text=halo kak, saya ${nama.value} dengan email ${email.value}, ${pesan.value}`, '_blank')
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Peringatan!',
+        text: 'nama, email, dan pesan tidak boleh kosong'
+      })
+    }
   })
 
 </script>
