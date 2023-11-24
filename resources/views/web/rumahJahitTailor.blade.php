@@ -82,7 +82,6 @@
             <a href="https://wa.me/${item.phone}?text=Hallo kak" class="${classBtn}" target="_blank">Hubungi</a>
           </div>
           `;
-          // <a href="/rumah-jahit/${item.id}/janji-temu" class="${classBtn}">Janji Temu</a>
 
         // add element to container
         $("#profileTailor").append(html);
@@ -97,7 +96,6 @@
           success: (response) => {
             $(document).ready(() => {
               
-              console.log(response, '<-- paket');
               // empty container element
               // $("#loading").addClass('hidden')
               $("#containerPaket").empty();
