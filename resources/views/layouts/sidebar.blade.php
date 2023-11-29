@@ -15,7 +15,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="/" id="dashboard" class="nav-link">
+          <a href="{{ url('cms/dashboard') }}" id="dashboard" class="nav-link">
             <i class="nav-icon fa-solid fa-house"></i>
             <p>Dashboard</p>
           </a>
@@ -76,32 +76,3 @@
     <small>Copy Right © By Jocodes</small>
   </footer> --}}
 </aside>
-<script>
-  const getId = (id) => document.getElementById(id)
-
-  const checkActiveMenu = () => {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const routePath = url.pathname;   // route name
-
-    const activeClass = (id) => getId(id).classList.add('active')
-
-    if (routePath === '/') {
-      activeClass('dashboard')
-    } else if(routePath === '/surat-masuk') {
-      activeClass('suratMasuk')
-    } else if (routePath === '/surat-keluar') {
-      activeClass('suratKeluar')
-    } else if (routePath === '/jenis-surat') {
-      activeClass('jenisSurat')
-    } else if (routePath.startsWith('/arsip-surat-masuk')) {
-      activeClass('arsipSuratMasuk')
-    } else if (routePath.startsWith('/arsip-surat-keluar')) {
-      activeClass('arsipSuratKeluar')
-    } else if (routePath === '/add-user') {
-      activeClass('addUser')
-    }
-  }
-  checkActiveMenu()
-
-</script>
