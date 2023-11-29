@@ -68,10 +68,10 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
-
+    });
     Route::prefix('v1/dashboard')->controller(DashboardController::class)->group(function () {
         Route::get('/count', 'count');
-        Route::get('/count/boking' , 'countBoking');
+        Route::get('/count/boking', 'countBoking');
     });
 });
 // *end cms
