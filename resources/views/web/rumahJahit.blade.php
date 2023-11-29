@@ -8,7 +8,7 @@
     </div>
   </x-container>
 
-  <x-container id="containerTailor">
+  <x-container id="containerTailor" class="mb-28">
     <x-skeleton-data/>
     <x-skeleton-data/>
     <x-skeleton-data/>

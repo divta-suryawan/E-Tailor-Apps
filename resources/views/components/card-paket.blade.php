@@ -8,8 +8,9 @@
     </div>
   
     <div class="p-2 flex flex-col items-stretch h-full">
-      <div class="title mb-8">{{$title ?? '-'}}</div>
-      <div class="font-bold text-lg h-full flex items-end">Mulai dari Rp. {{$price ?? '0'}}</div>
+      <div class="title font-medium">{{$title ?? '-'}}</div>
+      <div class="mb-8 text-sm">{{$detail ?? ''}}</div>
+      <div class="font-bold text-lg h-full flex items-end">Mulai dari {{$price ?? '0'}}</div>
     </div>
     
   </div>
