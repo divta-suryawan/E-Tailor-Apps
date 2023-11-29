@@ -8,6 +8,7 @@ use App\Models\BookingModel;
 use App\Models\ExampleModel;
 use App\Traits\HttpResponseTraits;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class BookingRepositories implements BookingInterfaces
 {
@@ -21,10 +22,15 @@ class BookingRepositories implements BookingInterfaces
 
     public function getAllData()
     {
-        $data = $this->bookingModel::with('package')->get();
-        if ($data->isEmpty()) {
-            return $this->dataNotFound();
+        $user = Auth::user();
+        $id_user = $user->id;
+        if ($user->role == 'user') {
+            $data = $this->bookingModel::whereHas('package', function ($query) use ($id_user) {
+                $query->where('id_user', $id_user);
+            })->get();
+            return $this->success($data);
         } else {
+            $data = $this->bookingModel::get();
             return $this->success($data);
         }
     }

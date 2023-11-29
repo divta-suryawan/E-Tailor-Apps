@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CMS\AuthController;
+use App\Http\Controllers\CMS\BookingController;
 use App\Http\Controllers\CMS\ExampleController;
 use App\Http\Controllers\CMS\PackagesController;
 use App\Http\Controllers\CMS\TailorController;
@@ -54,6 +55,13 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::post('/create', 'createData');
         Route::get('/get/{id}', 'getDataById');
         Route::get('/get/tailor/{id_tailor}', 'getDataPacketByTailor');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+    Route::prefix('v1/booking')->controller(BookingController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
     });

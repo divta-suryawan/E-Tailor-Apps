@@ -108,7 +108,7 @@
             // get data booking
             function getDataBooking() {
                 $.ajax({
-                    url: `/api/v1/booking`,
+                    url: `/v1/booking`,
                     method: "GET",
                     dataType: "json",
                     success: function (response) {
@@ -152,7 +152,7 @@
             // get data packet
             function loadPackageOptions() {
                 $.ajax({
-                    url: '/api/v1/packages',
+                    url: '/v1/packages',
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
@@ -181,7 +181,7 @@
                 $('#bookingLabel').text('Edit Data');
                 $.ajax({
                     type: 'GET',
-                    url: `/api/v1/booking/get/${id}`,
+                    url: `/v1/booking/get/${id}`,
                     success: function(response) {
                         $('#id').val(response.data.id);
                         $('#id_package').val(response.data.id_package);
@@ -228,7 +228,7 @@
                 if (id) {
                     $.ajax({
                         type: 'post',
-                        url: `/api/v1/booking/update/${id}`,
+                        url: `/v1/booking/update/${id}`,
                         data: data,
                         success: function(response) {
                             if (response.code === 422) {
@@ -249,7 +249,7 @@
                 } else {
                     $.ajax({
                         type: 'POST',
-                        url: '/api/v1/booking/create',
+                        url: '/v1/booking/create',
                         data: data,
                         success: function(response) {
                             console.log(response);
