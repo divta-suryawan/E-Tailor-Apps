@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CMS\AuthController;
 use App\Http\Controllers\CMS\BookingController;
+use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\ExampleController;
 use App\Http\Controllers\CMS\PackagesController;
 use App\Http\Controllers\CMS\TailorController;
@@ -38,6 +39,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/usermanagement', function () {
         return view('cms/usermanagement');
     });
+    Route::get('/cms/dashboard', function () {
+        return view('cms.dashboard');
+    });
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::prefix('v1/tailor')->controller(TailorController::class)->group(function () {
@@ -64,6 +68,10 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
+
+    Route::prefix('v1/dashboard')->controller(DashboardController::class)->group(function () {
+        Route::get('/count', 'count');
+        Route::get('/count/boking' , 'countBoking');
     });
 });
 // *end cms

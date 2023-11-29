@@ -1,47 +1,75 @@
 @extends('../layouts/base')
-@section('content')
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0">admin</h1>
+@section('main-content')
+    <div class="row">
+        <div class="col-lg-6 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3 id="tailor"></h3>
+                    <p>Data Tailor</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3 id="boking"></h3>
+                    <p>Data Boking</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
-@endsection
-@section('main-content')
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h3 class="card-title">Tablet</h3>
-                
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-                <div id="dataTables_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table id="dataTable" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>nama</th>
-                                        <th>action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody">
-                                    
-                                    <tr id="loading-row" style="display: none;">
-                                        <td colspan="9" class="text-center">
-                                            <i class="fa fa-spinner fa-spin"></i> Loading...
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+    <div class="row">
+        <div class="col-lg-12 mb-4 order-0">
+            <div class="card">
+                <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">Selamat datang di dashboard E-Tailor
+                                <b>{{ auth()->user()->name }}</b> 🎉
+                            </h5>
+                            <p class="mb-4"></b></p>
+                            <i class="fa-sharp fa-solid fa-face-smile text-warning"></i>
+                            <a href="javascript:;" class="">Enjoy your work !!!</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                            <img class="mb-4 " src="{{ asset('assets/images/dashboard.svg') }}" height="300" width=350>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /.card-body -->
         </div>
-        <!-- /.card -->
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "get",
+                url: "{{ url('v1/dashboard/count') }}",
+                dataType: "JSON",
+                success: function(response) {
+                    console.log(response)
+                    $('#tailor').text(response.data)
+                }
+            });
+            $.ajax({
+                type: "get",
+                url: "{{ url('v1/dashboard/count/boking') }}",
+                dataType: "JSON",
+                success: function(response) {
+                    console.log(response)
+                    $('#boking').text(response.data)
+                }
+            });
+        });
+    </script>
 @endsection
