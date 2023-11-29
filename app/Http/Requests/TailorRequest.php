@@ -23,7 +23,7 @@ class TailorRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->is('api/v1/tailor/update/*')) {
+        if ($this->is('v1/tailor/update/*')) {
             $rules['tailor_name'] = 'required';
             $rules['email'] = 'required';
             $rules['address'] = 'required';
