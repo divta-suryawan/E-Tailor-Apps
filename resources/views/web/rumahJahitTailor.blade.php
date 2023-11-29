@@ -18,7 +18,9 @@
   
     <x-container>
       <div class="text-xl font-semibold mb-4">Paket yang ditawarkan</div>
-      <div class="grid grid-cols-4 gap-4" id="containerPaket"></div>
+      <div class="mb-28">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="containerPaket"></div>
+      </div>
     </x-container>
   </div>
 
@@ -108,6 +110,7 @@
                     profile="/uploads/tailor/${tailorImage}"
                     name="${tailorName}"
                     title="${item.package_name}"
+                    detail="${item.description}"
                     price="${formatRupiahPac(item.package_price)}"
                   />
                 `
