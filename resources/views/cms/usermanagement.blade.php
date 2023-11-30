@@ -1,15 +1,10 @@
 @extends('../layouts/base')
-@section('content')
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0">User Management</h1>
-        </div>
-    </div>
-@endsection
+
 @section('main-content')
     <div class="col-12">
         <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h3 class="card-title fw-bold"><b>Data User</b></h3>
                 <button type="button" class="btn btn-outline-primary ml-auto" data-toggle="modal" data-target="#UserManagementModal"
                     id="#myBtn">
                     Tambah Data

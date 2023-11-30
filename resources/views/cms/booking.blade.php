@@ -1,16 +1,9 @@
 @extends('layouts.base')
-@section('content')
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="ml-1">Data Booking</h1>
-        </div>
-    </div>
-@endsection
 @section('main-content')
     <div class="col-12">
         <div class="card">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h3 class="card-title">Data</h3>
+                <h3 class="card-title fw-bold"><b>Data Booking</b></h3>
                 <button type="button" class="btn btn-outline-primary ml-auto"
                     id="addBooking">
                     Tambah Data

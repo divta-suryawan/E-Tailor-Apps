@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E Tailor App</title>
+    <link rel="icon" href="{{ asset('assets/images/logo-e-tailor.svg') }}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -77,6 +78,20 @@
   }
 }
 </style>
+<style>
+    .is-active {
+        background-color: #CC636F;
+        color: #ffffff;
+        border-radius: 10px;
+    }
+    .is-active .nav-icon{
+        color: #ffffff;
+    }
+    .fa-icon-custom{
+        color: #CC636F;
+    }
+</style>
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -124,12 +139,9 @@
     <!-- ./wrapper -->
 
     <footer class="main-footer">
-        <img src="{{ asset('assets/dist/img/stmikadhiguna.png')}}" alt="" class="mr-2" style="width: 25px">
-        Powered By Mahasiswa KKLP STMIK Adhi Guna 2023
-        <div class="float-right d-none d-sm-inline-block">
-            <small>Copy Right © By Jocodes</small>
-            <b>Version</b> 1.0.0
-        </div>
+        <img src="{{ asset('assets/images/logo-e-tailor.svg') }}" alt="" class="mr-2" style="width: 25px">
+        <small>Copy Right © By Powered By Pejuang S.kom</small>
+        <b>Version</b> 1.0.0
     </footer>
 
     <!-- jQuery UI 1.11.4 -->

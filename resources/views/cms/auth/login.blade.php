@@ -22,9 +22,9 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <img src="{{ asset('assets/dist/img/lambang_kota_palu.png') }}" alt="" style="width: 75px">
+                <img src="{{ asset('assets/images/logo-e-tailor.svg') }}" alt="" style="width: 75px">
                 <br>
-                <span class="h3"><b>Kel. Besusu Timur</b></span>
+                <span class="h3 " style="color: #CC636F;"><b>E-Tailor APP</b></span>
             </div>
             <div class="card-body">
                 <div id="error-message" class="error-message" style="display: none;">Inputkan disini</div>
@@ -51,7 +51,7 @@
                     <div class="row d-flex justify-content-center">
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -109,7 +109,7 @@
                     } else if (response.message === 'Login failed') {
                         alert('failed');
                     } else {
-                        window.location.href = '/cms/tailor';
+                        window.location.href = '/cms/dashboard';
                     }
                 }
             });
@@ -120,6 +120,6 @@
             errorMessage.html(message);
         }
 
-       
+
     });
 </script>
