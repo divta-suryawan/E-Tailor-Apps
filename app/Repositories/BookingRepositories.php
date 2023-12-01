@@ -25,12 +25,12 @@ class BookingRepositories implements BookingInterfaces
         $user = Auth::user();
         $id_user = $user->id;
         if ($user->role == 'user') {
-            $data = $this->bookingModel::whereHas('package', function ($query) use ($id_user) {
+            $data = $this->bookingModel::with('package')->whereHas('package', function ($query) use ($id_user) {
                 $query->where('id_user', $id_user);
             })->get();
             return $this->success($data);
         } else {
-            $data = $this->bookingModel::get();
+            $data = $this->bookingModel::with('package')->get();
             return $this->success($data);
         }
     }

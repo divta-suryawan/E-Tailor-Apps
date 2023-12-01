@@ -36,12 +36,14 @@
                         <p>Booking</p>
                     </a>
                 </li>
-                <li class="nav-item mt-1 {{ request()->is('cms/usermanagement*') ? 'is-active' : '' }}">
-                    <a href="{{ url('cms/usermanagement') }}" id="userManagement" class="nav-link">
-                        <i class="nav-icon fa-solid fa-user fa-icon-custom"></i>
-                        <p>User Management</p>
-                    </a>
-                </li>
+                @if (auth()->user()->role=='admin')
+                    <li class="nav-item mt-1 {{ request()->is('cms/usermanagement*') ? 'is-active' : '' }}">
+                        <a href="{{ url('cms/usermanagement') }}" id="userManagement" class="nav-link">
+                            <i class="nav-icon fa-solid fa-user fa-icon-custom"></i>
+                            <p>User Management</p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
 <!-- /.sidebar-menu -->

@@ -105,6 +105,7 @@
                     method: "GET",
                     dataType: "json",
                     success: function (response) {
+                        console.log(response);
                         let tableBody = "";
                         $.each(response.data, function (index, item) {
                             const formattedBookingDate = moment(item.booking_date).format("D MMMM YYYY", { locale: 'id' });
@@ -114,9 +115,9 @@
                             tableBody += "<td>" + (index + 1) + "</td>";
                             tableBody += "<td>" + item.customer_name + "</td>";
                             tableBody += "<td>" + item.phone_number + "</td>";
-                            tableBody += "<td>" + item.booking_date + "</td>";
                             tableBody += "<td>" + formattedBookingDate + "</td>";
                             tableBody += "<td>" + formattedAppointmentDate + "</td>";
+                            tableBody += "<td>" + item.package.package_name + "</td>";
                             tableBody += "<td>";
                                 tableBody += "<button type='button' class='btn btn-outline-primary btn-sm edit-modal' data-id='" + item.id + "'><i class='fa fa-edit'></i></button>";
                                 tableBody += "<button type='button' class='btn btn-outline-danger btn-sm delete-confirm' data-id='" + item.id + "'><i class='fa fa-trash'></i></button>";
