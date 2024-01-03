@@ -21,13 +21,15 @@ class PackagesRepositories implements PackagesInterfaces
     }
     public function getAllData()
     {
-        $data = $this->packagesModel::with('tailor')->get();
+        $data = $this->packagesModel::with('tailor')->inRandomOrder()->get();
+        
         if ($data->isEmpty()) {
             return $this->dataNotFound();
         } else {
             return $this->success($data);
         }
     }
+    
     public function getAllDataByTailor()
     {
         $user = Auth::user();
